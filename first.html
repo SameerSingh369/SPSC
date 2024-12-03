@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smartphone Innovation</title>
+    <style>
+        :root {
+  --bg-dark: #0a0a1a;
+  --bg-card: #121228;
+  --text-primary: #e6e6f0;
+  --text-secondary: #9090a0;
+  --accent-iphone: #2c3e50;
+  --accent-samsung: #1a237e;
+  --accent-oneplus: #2d3436;
+  
+  --neon-blue: #00ffff;
+  --neon-pink: #ff00ff;
+  --neon-green: #00ff00;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', 'Arial', sans-serif;
+  background: linear-gradient(
+      135deg, 
+      var(--bg-dark) 0%, 
+      #0a0a2a 100%
+  );
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  perspective: 1000px;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 40px;
+  font-size: 2.5em;
+  color: var(--neon-blue);
+  text-shadow: 
+    0 0 10px var(--neon-blue),
+    0 0 20px var(--neon-blue),
+    0 0 40px var(--neon-blue),
+    0 0 80px var(--neon-blue);
+  animation: neon-flicker 1.5s infinite alternate;
+}
+
+@keyframes neon-flicker {
+  0% {
+    text-shadow: 
+      0 0 10px var(--neon-blue),
+      0 0 20px var(--neon-blue),
+      0 0 40px var(--neon-blue),
+      0 0 80px var(--neon-blue);
+  }
+  100% {
+    text-shadow: 
+      0 0 5px var(--neon-blue),
+      0 0 15px var(--neon-blue),
+      0 0 30px var(--neon-blue),
+      0 0 60px var(--neon-blue);
+  }
+}
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  background-color: rgba(18, 18, 40, 0.8);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: 
+      transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+      box-shadow 0.3s ease;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateX(10deg) rotateY(-10deg);
+  
+  /* Neon Glow Effect */
+  box-shadow: 
+    0 0 20px rgba(0,255,255,0.4),
+    0 0 40px rgba(255,0,255,0.3),
+    0 0 60px rgba(0,255,0,0.2);
+  border: 2px solid transparent;
+  animation: neon-border 2s ease infinite alternate;
+}
+
+@keyframes neon-border {
+  0% {
+    border-color: rgba(0,255,255,0.3);
+    box-shadow: 
+      0 0 20px rgba(0,255,255,0.4),
+      0 0 40px rgba(255,0,255,0.3),
+      0 0 60px rgba(0,255,0,0.2);
+  }
+  50% {
+    border-color: rgba(255,0,255,0.3);
+    box-shadow: 
+      0 0 30px rgba(255,0,255,0.4),
+      0 0 50px rgba(0,255,0,0.3),
+      0 0 70px rgba(0,255,255,0.2);
+  }
+  100% {
+    border-color: rgba(0,255,0,0.3);
+    box-shadow: 
+      0 0 20px rgba(0,255,0,0.4),
+      0 0 40px rgba(0,255,255,0.3),
+      0 0 60px rgba(255,0,255,0.2);
+  }
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  right: -50%;
+  bottom: -50%;
+  background: radial-gradient(
+      circle at center, 
+      rgba(0,255,255,0.1) 0%, 
+      transparent 60%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  transform: 
+      rotateX(0) 
+      rotateY(0) 
+      scale(1.05) 
+      translateZ(50px);
+  box-shadow: 
+    0 0 30px rgba(0,255,255,0.5),
+    0 0 50px rgba(255,0,255,0.4),
+    0 0 70px rgba(0,255,0,0.3);
+}
+
+.card-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  filter: 
+      saturate(120%) 
+      contrast(110%) 
+      brightness(0.9);
+  transition: 
+      transform 0.4s ease,
+      filter 0.3s ease;
+}
+
+.card:hover .card-image {
+  transform: scale(1.1);
+  filter: 
+      saturate(130%) 
+      contrast(120%) 
+      brightness(1);
+}
+
+.card-content {
+  padding: 25px;
+  position: relative;
+  z-index: 2;
+  background: linear-gradient(
+    135deg, 
+    rgba(0,255,255,0.1) 0%, 
+    rgba(255,0,255,0.1) 50%, 
+    rgba(0,255,0,0.1) 100%
+  );
+  backdrop-filter: blur(10px);
+}
+
+.card-title {
+  font-size: 2em;
+  margin-bottom: 15px;
+  font-weight: 700;
+  color: var(--neon-pink);
+  text-shadow: 
+    0 0 10px var(--neon-pink),
+    0 0 20px var(--neon-pink),
+    0 0 40px var(--neon-pink);
+  animation: neon-pink-flicker 1.5s infinite alternate;
+}
+
+@keyframes neon-pink-flicker {
+  0% {
+    text-shadow: 
+      0 0 10px var(--neon-pink),
+      0 0 20px var(--neon-pink),
+      0 0 40px var(--neon-pink);
+  }
+  100% {
+    text-shadow: 
+      0 0 5px var(--neon-pink),
+      0 0 15px var(--neon-pink),
+      0 0 30px var(--neon-pink);
+  }
+}
+
+.card-description {
+  color: var(--text-secondary);
+  font-size: 1em;
+  position: relative;
+}
+
+.card-description::before {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to right, 
+    var(--neon-blue), 
+    var(--neon-pink), 
+    var(--neon-green)
+  );
+  opacity: 0.7;
+  animation: neon-underline 3s ease infinite alternate;
+}
+
+@keyframes neon-underline {
+  0% {
+    opacity: 0.5;
+    transform: scaleX(0.7);
+  }
+  100% {
+    opacity: 0.9;
+    transform: scaleX(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .card-container {
+      grid-template-columns: 1fr;
+  }
+
+  .card {
+      transform: none;
+  }
+
+  .section-title {
+      font-size: 2em;
+  }
+}
+
+@keyframes subtle-background-movement {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
+body {
+  background-size: 200% 200%;
+  animation: subtle-background-movement 15s ease infinite;
+}
+    </style>
+</head>
+<body>
+    <main class="container">
+        <h1 class="section-title">Smartphone Innovation</h1>
+        <section class="card-container">
+            <article class="card">
+                <img 
+                    src="https://m.media-amazon.com/images/I/61+en1DGbCL.jpg" 
+                    alt="iPhone 16 Pro Max Smartphone" 
+                    class="card-image"
+                    loading="lazy"
+                >
+                <div class="card-content">
+                    <h2 class="card-title">iPhone 16 Pro Max</h2>
+                    <p class="card-description">
+                        Pushing technological boundaries with a 6.9-inch ProMotion OLED display, the iPhone 16 Pro Max delivers unparalleled visual excellence. The A18 Pro chip ensures blazing-fast performance, while its advanced triple-camera system captures professional-grade photography and videography with unprecedented detail and clarity.
+                    </p>
+                </div>
+            </article>
+
+            <article class="card">
+                <img 
+                    src="https://www.buyreal.in/wp-content/uploads/2024/04/81NEVf26quL._SL1500_-15.jpg.webp" 
+                    alt="Samsung Galaxy S24 Smartphone" 
+                    class="card-image"
+                    loading="lazy"
+                >
+                <div class="card-content">
+                    <h2 class="card-title">Samsung Galaxy S24</h2>
+                    <p class="card-description">
+                        Redefining mobile intelligence, the Samsung Galaxy S24 integrates cutting-edge AI capabilities with a stunning display and powerful computational photography. Its adaptive performance and sleek design represent the pinnacle of smartphone innovation, delivering an intuitive and immersive user experience.
+                    </p>
+                </div>
+            </article>
+
+            <article class="card">
+                <img 
+                    src="https://m.media-amazon.com/images/I/61AplC-qoML.jpg" 
+                    alt="OnePlus 12 Smartphone" 
+                    class="card-image"
+                    loading="lazy"
+                >
+                <div class="card-content">
+                    <h2 class="card-title">OnePlus 12</h2>
+                    <p class="card-description">
+                        A masterpiece of mobile engineering, the OnePlus 12 combines a breathtaking LTPO AMOLED display with the Snapdragon 8 Gen 3 chipset. Its sophisticated triple-camera system and lightning-fast charging technologies represent the perfect fusion of performance, design, and innovation.
+                    </p>
+                </div>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
